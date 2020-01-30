@@ -1,5 +1,5 @@
 //  Danny Ramirez
-// 	1/28/20
+// 	1/30/20
 //  This is a comment
 //  The setup function function is called once when your program begins
 boids = [];
@@ -14,8 +14,8 @@ function setup() {
 
 //  The draw function is called @ 30 fps
 function draw() {
-
   runBoids(num);
+  background(5, 5, 5);
 }
 
 function loadBoids(n){
