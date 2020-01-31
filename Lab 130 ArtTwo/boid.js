@@ -1,6 +1,6 @@
 // boid class
 class Boid{
-  constructor(x, y, dx, dy){
+  constructor(x, y, dx, dy, id){
     this.loc = createVector(x, y);
     this.clr = color(random(255), random(255), random(255))
     this.vel = createVector(dx, dy);
@@ -34,9 +34,9 @@ class Boid{
   }
 
   update(){
-    this.vel.add(this.acc);
-    this.loc.add(this.vel);
-    this.vel.limit(2);
+      this.vel.add(this.acc);
+      this.loc.add(this.vel);
+      this.vel.limit(2);
   }
 
   render(){
@@ -45,7 +45,7 @@ class Boid{
     for(var j = 0; j < boids.length - 1; j++){
       distToBoid = this.loc.dist(boids[j].loc);
       if(distToBoid < 50){
-        line(this.loc.x, this.loc.y, boids[j].loc.x, boids[j].loc.y)
+        line(this.loc.x, this.loc.y, boids[j].loc.x, boids[j].loc.y);
       }
     }
   }

@@ -14,7 +14,6 @@ function setup() {
 
 //  The draw function is called @ 30 fps
 function draw() {
-
   runBoids(num);
 }
 
