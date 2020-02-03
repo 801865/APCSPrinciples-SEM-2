@@ -3,7 +3,7 @@
 //  This is a comment
 //  The setup function function is called once when your program begins
 boids = [];
-var rotator();
+var rotator;
 var num = 100;
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -16,17 +16,18 @@ function setup() {
 //  The draw function is called @ 30 fps
 function draw() {
   background(5, 5, 5);
-  runBoids(num);
+  runObjects(num);
 }
 
 function loadObjects(n){
-  rotator = new Rotator(width/2, height/2);
+  rotator = new Rotator(width/2, height/2, 10, 10);
   for(var i = 0; i < n; i++){
       boids[i] = new Boid(random(width), random(height), random(-10, 10), random(-10, 10));
   }
 }
 
-function runBoids(n){
+function runObjects(n){
+  rotator.run();
   for(var i = 0; i < n; i++){
       boids[i].run();
   }

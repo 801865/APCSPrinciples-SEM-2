@@ -1,8 +1,7 @@
 // boid class
 class Boid{
-  constructor(x, y, dx, dy, id){
+  constructor(x, y, dx, dy){
     this.loc = createVector(x, y);
-    this.clr = color(random(255), random(255), random(255))
     this.vel = createVector(dx, dy);
     this.acc = createVector(0.1, 0.1);
     this.clr = color(random(255, 0), random(255, 0), random(255, 0))
@@ -48,5 +47,18 @@ class Boid{
         line(this.loc.x, this.loc.y, boids[j].loc.x, boids[j].loc.y);
       }
     }
+    var distToRotator;
+    distToRotator = this.loc.dist(rotator.loc);
+    if(distToRotator < 800){
+      line(this.loc.x, this.loc.y, rotator.loc.x, rotator.loc.y);
+      this.acc = p5.Vector.sub(rotator.loc, this.loc);
+      this.acc.normalize();
+      this.acc.mult(0.1);
+    }// attraction
+    if(distToRotator < 100){
+      this.acc = p5.Vector.sub(this.loc, rotator.loc);
+      this.acc.normalize();
+      this.acc.mult(0.5);
+    }// repulsion
   }
 }
