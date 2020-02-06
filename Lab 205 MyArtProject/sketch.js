@@ -4,11 +4,17 @@
 //  The setup function function is called once when your program begins
 
 // By Roni Kaufman
-var sliderColor, sliderText;
+var startScreen;
+var mode = 0;
+var sliderRed, sliderGreen, sliderBlue, sliderText;
 let particles = [];
 let squiggliness = 1/100;
 let hu = 0;
 let hshift;
+var red = 0;
+var green = 0;
+var blue = 0;
+var button;
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -17,26 +23,35 @@ function setup() {
   stroke(90, 100);
 	noFill();
   hshift = random(.001);
-  background(10);
-  sliderText = createP("Move the slider for different colors.");
-  sliderText.position(6, 300);
-  sliderColor = createSlider(0, 255, 0);
-  sliderColor.position(40, 400);
+  background(220);
+  sliderText = createP("Move the slider to change the color of the image. The first slider is red, the second is green, and the third is blue.");
+  sliderText.position(width/2 - 100, height/2 - 100);
+  sliderRed = createSlider(0, 255, 0);
+  sliderRed.position(width/2 + 150, height/2 - 50);
+  sliderGreen = createSlider(0, 255, 0);
+  sliderGreen.position(width/2 + 150, height/2);
+  sliderBlue = createSlider(0, 255, 0);
+  sliderBlue.position(width/2 + 150, height/2 + 50);
+  loadButton();
   //updateParticles(0.1, 0);
 }
 
 function draw() {
-	beginShape();
-  for (let p of particles) {
-    p.draw();
-    p.move();
+  if(mode === 0){
+    startScreen();
+  } else if(mode === 1) {
+    beginShape();
+    for (let p of particles) {
+      p.draw();
+      p.move();
+    }
+    endShape();
+    if (frameCount < 632.01) {
+      updateParticles(1, frameCount/100);
+    } else if (frameCount > 1000) {
+      //noLoop();
+    }
   }
-	endShape();
-	if (frameCount < 632.01) {
-		updateParticles(1, frameCount/100);
-	} else if (frameCount > 1000) {
-		//noLoop();
-	}
 }
 
 function updateParticles(r, theta0) {
@@ -49,7 +64,7 @@ function updateParticles(r, theta0) {
     let y_ = height/2 + r*sin(theta);
 		let s_ = 1;
     //let c_ = color(random(50, 60), random(90, 100), random(90, 100), 100);
-		let c_ = color(sliderColor.value(), sliderColor.value(), sliderColor.value());
+		let c_ = color(red, green, blue);
     particles.push(new Particle(x_, y_, s_, c_));
   }
 }
@@ -92,3 +107,15 @@ function Particle(x_, y_, s_, c_) {
 //function mousePressed(){
 	//save('pix.jpg');
 //}
+function startScreen(){
+  red = sliderRed.value();
+  green = sliderGreen.value();
+  blue = sliderBlue.value();
+  fill(color(red, green, blue));
+  ellipse(width/2 - 10, height/2 + 100, 100, 100);
+  button.run();
+}
+
+function loadButton(){
+  button = new Button(width/2 - 60, height/2 + 200, 100, 50, 'See image?', color(random(255), random(255), random(255)));
+}//makes a button
