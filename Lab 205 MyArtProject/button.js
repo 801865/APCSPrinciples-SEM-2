@@ -28,6 +28,7 @@ class Button{
       mouseY > this.y &&
       mouseY < (this.y + this.h)){
       mode = 1;
+      background(b);
     }//changes the screen
   }//end of update
 }//end of button class

@@ -15,6 +15,7 @@ var red = 0;
 var green = 0;
 var blue = 0;
 var button;
+var b = 220;
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -23,7 +24,7 @@ function setup() {
   stroke(90, 100);
 	noFill();
   hshift = random(.001);
-  background(220);
+  background(b);
   sliderText = createP("Move the slider to change the color of the image. The first slider is red, the second is green, and the third is blue.");
   sliderText.position(width/2 - 100, height/2 - 100);
   sliderRed = createSlider(0, 255, 0);
@@ -40,6 +41,10 @@ function draw() {
   if(mode === 0){
     startScreen();
   } else if(mode === 1) {
+    sliderText.position(10000, 10000);
+    sliderRed.position(10000, 10000);
+    sliderBlue.position(10000, 10000);
+    sliderGreen.position(10000, 10000);
     beginShape();
     for (let p of particles) {
       p.draw();
@@ -97,7 +102,7 @@ function Particle(x_, y_, s_, c_) {
 			hu= 0;
 			hshift = random(.01);
 		}
-    //fill(this.c);
+    fill(this.c);
     //circle(this.x, this.y, this.size);
 		curveVertex(this.x, this.y);
     //this.c.setAlpha(100);
