@@ -11,11 +11,12 @@ let particles = [];
 let squiggliness = 1/100;
 let hu = 0;
 let hshift;
-var red = 0;
-var green = 0;
-var blue = 0;
+var r = 0;
+var g = 0;
+var b = 0;
 var button;
 var b = 220;
+var theta, x_, y_, s_, c_;
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -26,13 +27,13 @@ function setup() {
   hshift = random(.001);
   background(b);
   sliderText = createP("Move the slider to change the color of the image. The first slider is red, the second is green, and the third is blue.");
-  sliderText.position(width/2 - 100, height/2 - 100);
+  sliderText.position(width/2 + 200, height/2 - 100);
   sliderRed = createSlider(0, 255, 0);
-  sliderRed.position(width/2 + 150, height/2 - 50);
+  sliderRed.position(width/2 + 480, height/2 - 50);
   sliderGreen = createSlider(0, 255, 0);
-  sliderGreen.position(width/2 + 150, height/2);
+  sliderGreen.position(width/2 + 480, height/2);
   sliderBlue = createSlider(0, 255, 0);
-  sliderBlue.position(width/2 + 150, height/2 + 50);
+  sliderBlue.position(width/2 + 480, height/2 + 50);
   loadButton();
   //updateParticles(0.1, 0);
 }
@@ -59,21 +60,6 @@ function draw() {
   }
 }
 
-function updateParticles(r, theta0) {
-  //particles = [];
-	//let r = 100;
-	let n = 1;
-  for (let i = 0; i < n; i++) {
-		let theta = theta0 + map(i, 0, n, -PI, PI);
-    let x_ = width/2 + r*cos(theta);
-    let y_ = height/2 + r*sin(theta);
-		let s_ = 1;
-    //let c_ = color(random(50, 60), random(90, 100), random(90, 100), 100);
-		let c_ = color(red, green, blue);
-    particles.push(new Particle(x_, y_, s_, c_));
-  }
-}
-
 function Particle(x_, y_, s_, c_) {
   this.x = x_;
   this.y = y_;
@@ -95,17 +81,32 @@ function Particle(x_, y_, s_, c_) {
   }
 
   this.draw = function() {
-    //this.c.setAlpha(this.alpha);
+    this.c.setAlpha(this.alpha);
 		stroke(hu, 255, 255, this.alpha * 255);
 		hu+=hshift;
 		if (hu > 255) {
 			hu= 0;
 			hshift = random(.01);
 		}
-    fill(this.c);
+    //fill(this.c);
     //circle(this.x, this.y, this.size);
 		curveVertex(this.x, this.y);
-    //this.c.setAlpha(100);
+    this.c.setAlpha(100);
+  }
+}
+
+function updateParticles(r, theta0) {
+  //particles = [];
+	//let r = 100;
+	let n = 1;
+  for (let i = 0; i < n; i++) {
+		theta = theta0 + map(i, 0, n, -PI, PI);
+    x_ = width/2 + r*cos(theta);
+    y_ = height/2 + r*sin(theta);
+		s_ = 1;
+    //let c_ = color(random(50, 60), random(90, 100), random(90, 100), 100);
+		c_ = color(r, g, b);
+    particles.push(new Particle(x_, y_, s_, c_));
   }
 }
 
@@ -113,10 +114,10 @@ function Particle(x_, y_, s_, c_) {
 	//save('pix.jpg');
 //}
 function startScreen(){
-  red = sliderRed.value();
-  green = sliderGreen.value();
-  blue = sliderBlue.value();
-  fill(color(red, green, blue));
+  r = sliderRed.value();
+  g = sliderGreen.value();
+  b = sliderBlue.value();
+  fill(color(r, g, b));
   ellipse(width/2 - 10, height/2 + 100, 100, 100);
   button.run();
 }
