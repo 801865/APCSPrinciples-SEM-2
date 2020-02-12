@@ -27,8 +27,14 @@ class Button{
       mouseX < (this.x + this.w) &&
       mouseY > this.y &&
       mouseY < (this.y + this.h)){
-      mode = 1;
       background(b);
+      if(this.message === 'Rainbow?'){
+          r = random(0, 255);
+          b = random(0, 255);
+          g = random(0, 255);
+          rainbow = true;
+      }
+      mode = 1;
     }//changes the screen
   }//end of update
 }//end of button class
