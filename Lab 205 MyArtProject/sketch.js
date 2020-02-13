@@ -94,9 +94,11 @@ function Particle(x_, y_, s_, c_) {
     //ellipse(this.x, this.y, this.size);
     fill(255, 255, 255);
     fill(this.c);
-    r = random(0, 255);
-    g = random(0, 255);
-    b = random(0, 255);
+    if(rainbow === true){
+      r = random(0, 255);
+      b = random(0, 255);
+      g = random(0, 255);
+    }
     //circle(this.x, this.y, this.size);
 		curveVertex(this.x, this.y);
     //this.c.setAlpha(100);
@@ -113,12 +115,6 @@ function updateParticles(r, theta0) {
     y_ = height/2 + r*sin(theta);
 		s_ = 1;
     //c_ = color(random(50, 60), random(90, 100), random(90, 100), 100);
-		c_ = color(r, g, b);
-    if(rainbow === true){
-      r = random(0, 255);
-      b = random(0, 255);
-      g = random(0, 255);
-    }
     //let c_ = color(random(50, 60), random(90, 100), random(90, 100), 100);
     c_ = color(r, g, b);
     particles.push(new Particle(x_, y_, s_, c_));
