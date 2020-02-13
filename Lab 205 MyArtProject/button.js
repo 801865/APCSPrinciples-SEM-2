@@ -34,6 +34,12 @@ class Button{
           g = random(0, 255);
           rainbow = true;
       }
+      if(this.message = 'Rainbow?'){
+        r = random(0, 255);
+        g = random(0, 255);
+        b = random(0, 255);
+      }
+      background(b);
       mode = 1;
     }//changes the screen
   }//end of update
