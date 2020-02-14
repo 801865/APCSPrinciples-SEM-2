@@ -30,7 +30,7 @@ function draw() {
 
 function loadParticles(n){
   for(var i = 0; i < n; i++){
-    particles[i] = new Particle(random(width), random(height));
+    particles[i] = new Particle(width/2, height/2);
     if(particles[i].lfeSpan < 0){
       particles.splice(i, 1);
     }

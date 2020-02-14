@@ -1,7 +1,7 @@
 //orbital.js
 class Orbital{
-  constructor(s, clr){
-    this.s = s;
+  constructor(r, clr){
+    this.rad = r;
     this.clr = clr;
   }
 }

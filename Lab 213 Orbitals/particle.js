@@ -1,25 +1,24 @@
 //particle.js
 class Particle{
-  consturctor(loc){
-    this.loc = loc;
+  constructor(x, y){
+    this.loc = createVector(x, y);
     this.vel = createVector(random(-0.1, 0.1), random(-0.1, 0.1));
-		this.acc = createVector(random(-0.1, 0.1), random(-0.1, 0.1));
+    this.acc = createVector(random(-0.1, 0.1), random(-0.1, 0.1));
     this.rad = random(11, 22);
     this.lifeSpan = random(200);
     var r = random(255);
-    var g = this.lifeSpan(200);
-    var b = random(255);
+    var g = this.lifeSpan%200;
+    var b = random(255 - r/2);
     this.clr = color(r, g, b);
     this.fclr = color(r, g, b, 10);
     this.orbitals = [];
     this.loadOrbitals(1);
     this.angle = random(TWO_PI);
-
 }
 
-  loadOrbitaks(n){
+  loadOrbitals(n){
     for(var i = 0; i < n; i++){
-      this.orbitals.push(newOrbital(5, color(128, 68, 40)));
+      this.orbitals.push(new Orbital(5, color(128, 68, 40)));
     }
   }
 
@@ -40,13 +39,14 @@ class Particle{
 	}
 
 	render(){
-		strokeweight(0.25);
+		strokeWeight(0.25);
 		stroke(this.clr);
 		fill(20, 90, 100, 60);
 		ellipse(this.loc.x, this.loc.y, this.rad, this.rad);
-		for(var i = 0; i < this.orbiters.lenght; i++){
-      var ox = this.loc.x + 30*cos(this.angle);
-      var oy = this.loc.y + 30*sin(this.angle);
+		for(var i = 0; i < this.orbitals.length; i++){
+      var angle = this.angle;
+      var ox = this.loc.x + 30*cos(angle);
+      var oy = this.loc.y + 30*sin(angle);
       fill(255, 0, 0);
       ellipse(ox, oy, 5, 5);
     }
