@@ -5,7 +5,7 @@ class Particle{
     this.vel = createVector(random(-0.1, 0.1), random(-0.1, 0.1));
     this.acc = createVector(random(-0.1, 0.1), random(-0.1, 0.1));
     this.rad = random(11, 22);
-    this.lifeSpan = random(200);
+    this.lifeSpan = 1;
     var r = random(255);
     var g = this.lifeSpan%200;
     var b = random(255 - r/2);

@@ -12,8 +12,7 @@ function setup() {
   background(15);
   toggle = 1;
   count = 0;
-
-
+  loadParticles(1);
 }
 
 //  The draw function is called @ 30 fps
@@ -24,16 +23,25 @@ function draw() {
   }
 
   if(particles.length < 20 && count === 0){
-    loadParticles(10);
+    runParticles(1);
   }
 }
 
 function loadParticles(n){
   for(var i = 0; i < n; i++){
-    particles[i] = new Particle(width/2, height/2);
-    if(particles[i].lfeSpan < 0){
+    particles[i] = new Particle(random(width), height/2);
+    if(particles[i].lifeSpan < 0){
       particles.splice(i, 1);
     }
+    //particles[i].run();
+  }
+}
+
+function runParticles(n){
+  for(var i = 0; i < n; i++){
     particles[i].run();
+    if(particles[i].lifeSpan < 0){
+      particles.splice(i, 1);
+    }
   }
 }
