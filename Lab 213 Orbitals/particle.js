@@ -2,13 +2,13 @@
 class Particle{
   constructor(x, y){
     this.loc = createVector(x, y);
-    this.vel = createVector(random(-0.1, 0.1), random(-0.1, 0.1));
-    this.acc = createVector(random(-0.1, 0.1), random(-0.1, 0.1));
+    this.vel = createVector(random(-0.3, 0.3), random(-0.3, 0.3));
+    this.acc = createVector(0, 0);
     this.rad = random(11, 22);
     this.lifeSpan = 1;
     var r = random(255);
-    var g = this.lifeSpan%200;
-    var b = random(255 - r/2);
+    var g = this.lifeSpan%250;
+    var b = random(255);
     this.clr = color(r, g, b);
     this.fclr = color(r, g, b, 10);
     this.orbitals = [];
