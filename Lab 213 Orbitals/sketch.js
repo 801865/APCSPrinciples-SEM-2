@@ -5,8 +5,7 @@
 var particles = [];
 var toggle;
 var count;
-var tries = 0;
-num = 1;
+num = 100;
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -19,19 +18,20 @@ function setup() {
 
 //  The draw function is called @ 30 fps
 function draw() {
+  background(15);
   count++;
   if(count > 100){
     count = 0;
   }
 
-  if(count === 0 && tries < num + 1){
+  if(count%3 === 0 && particles.length < 1000){
     runParticles(num);
   }
 }
 
 function loadParticles(n){
   for(var i = 0; i < n; i++){
-    particles[i] = new Particle(random(width), height/2);
+    particles[i] = new Particle(width/2, height/2);
     if(particles[i].lifeSpan < 0){
       particles.splice(i, 1);
     }
@@ -45,6 +45,5 @@ function runParticles(n){
     if(particles[i].lifeSpan < 0){
       particles.splice(i, 1);
     }
-    tries = tries + 1;
   }
 }
