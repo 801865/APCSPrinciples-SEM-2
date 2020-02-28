@@ -11,7 +11,7 @@ class Ball{
 
   run(){
     this.update();
-    this.checkEdges();
+    this.checkEdges2();
     this.render();
   }
 
@@ -30,6 +30,25 @@ class Ball{
     }
   }
 
+  checkEdges2(){
+    if(this.loc.x < 0){
+      this.acc.mult(0);
+      this.vel.x = -this.vel.x;
+    }
+    if(this.loc.x > width){
+      this.acc.mult(0);
+      this.vel.x = -this.vel.x;
+    }
+    if(this.loc.y < 0){
+      this.acc.mult(0);
+      this.vel.y = -this.vel.y;
+    }
+    if(this.loc.y > height){
+      this.acc.mult(0);
+      this.vel.y = -this.vel.y;
+    }
+  }
+
   update(){
     this.vel.add(this.acc);
     this.vel.limit(1);
@@ -37,8 +56,16 @@ class Ball{
   }
 
   render(){
-    fill(this.clr);
-    this.clr =  color(random(0, 255), random(0, 255), random(0, 255));
-    ellipse(this.loc.x, this.loc.y, this.w, this.h);
+    //fill(this.clr);
+    //this.clr =  color(random(0, 255), random(0, 255), random(0, 255));
+    //ellipse(this.loc.x, this.loc.y, this.w, this.h);
+    stroke(this.clr);
+    var distToBall = 0;
+    for(var j = 0; j < ball.length - 1; j++){
+      distToBall = this.loc.dist(ball[j].loc);
+      if(distToBall < 50){
+        line(this.loc.x, this.loc.y, ball[j].loc.x, ball[j].loc.y);
+      }
+    }
   }
 }
