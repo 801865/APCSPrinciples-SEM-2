@@ -6,7 +6,8 @@ var num = 100;
 var ball = [];
 var sizeW = 10;
 var sizeH = 10;
-var state = 1;
+var state = 0;
+var button;
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -14,6 +15,7 @@ function setup() {
   background(5, 5, 5);
   fill(200, 30, 150);
   loadBalls(num);
+  loadButton();
 }
 
 //  The draw function is called @ 30 fps
@@ -42,15 +44,17 @@ function runBalls(n){
 function startImage(){
   push();
     textAlign(CENTER);
-    translate(450, 200);
+    translate(400, 10);
     textSize(30);
     fill(250, 250, 250);
     text('Instructions:', 10, 20);
     textSize(20);
     translate(0, 25);
-    text('Click each button to change what the image will be.', 10, 20);
-    translate(0, 25);
-    text("If you crash into the wall or the tail of the snake, it's game over!", 10, 20);
-    //rules of game above
+    text("Click each button to change what the image will be. Then click start to see the image.", 10, 20);
   pop();
+  button.run();
+}
+
+function loadButton(){
+  button = new Button(375, 675, 50, 50, "Start?", color(random(0, 255), random(0, 255), random(0, 255)));
 }
