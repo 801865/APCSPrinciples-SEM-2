@@ -28,6 +28,7 @@ class Button{
       if(this.message === 'Start?'){
         state = 1;
       }
+      background(5, 5, 5)
     }//changes the game screen
   }//end of update
 }//end of button class

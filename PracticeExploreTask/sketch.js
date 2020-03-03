@@ -7,7 +7,7 @@ var ball = [];
 var sizeW = 10;
 var sizeH = 10;
 var state = 0;
-var button;
+var button, buttonHide, buttonLine, buttonTrail, buttonRainbow;
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -51,10 +51,18 @@ function startImage(){
     textSize(20);
     translate(0, 25);
     text("Click each button to change what the image will be. Then click start to see the image.", 10, 20);
+    translate(0, 25);
+    text("The defult settings are: Balls are visible, lines appear when bals are near each other,", 10, 20);
+    translate(0, 25);
+    text("their color is black, there are 100 balls, and the balls have a trail.", 10, 20);
+
   pop();
   button.run();
 }
 
 function loadButton(){
   button = new Button(375, 675, 50, 50, "Start?", color(random(0, 255), random(0, 255), random(0, 255)));
+  buttonHide = new Button( 200, 300, 50, 50, "Hide Ball", color(random(0, 255), random(0, 255), random(0, 255)));
+  buttonLine =
+  buttonTrail =
 }
