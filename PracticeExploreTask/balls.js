@@ -56,8 +56,8 @@ class Ball{
   }
 
   render(){
-    //fill(this.clr);
-    //this.clr =  color(random(0, 255), random(0, 255), random(0, 255));
+    fill(this.clr);
+    this.clr =  color(random(0, 255), random(0, 255), random(0, 255));
     //ellipse(this.loc.x, this.loc.y, this.w, this.h);
     stroke(this.clr);
     var distToBall = 0;

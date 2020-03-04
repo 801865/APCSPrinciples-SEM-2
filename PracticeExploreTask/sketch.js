@@ -1,5 +1,5 @@
-//  Your Name
-// 	Date or version number
+//  Danny Ramirez
+// 	2/25/20
 //  This is a comment
 //  The setup function function is called once when your program begins
 var num = 100;
@@ -7,7 +7,8 @@ var ball = [];
 var sizeW = 10;
 var sizeH = 10;
 var state = 0;
-var button, buttonHide, buttonLine, buttonTrail, buttonRainbow;
+var button;
+var sliderRed, sliderGreen, sliderBlue, sliderText;
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -16,6 +17,14 @@ function setup() {
   fill(200, 30, 150);
   loadBalls(num);
   loadButton();
+  sliderText = createP("Move the slider to change the color of the image. The first slider is red, the second is green, and the third is blue.");
+  sliderText.position(width/2 + 200, height/2 - 100);
+  sliderRed = createSlider(0, 255, 0);
+  sliderRed.position(width/2 + 480, height/2 - 50);
+  sliderGreen = createSlider(0, 255, 0);
+  sliderGreen.position(width/2 + 480, height/2);
+  sliderBlue = createSlider(0, 255, 0);
+  sliderBlue.position(width/2 + 480, height/2 + 50);
 }
 
 //  The draw function is called @ 30 fps
@@ -50,19 +59,11 @@ function startImage(){
     text('Instructions:', 10, 20);
     textSize(20);
     translate(0, 25);
-    text("Click each button to change what the image will be. Then click start to see the image.", 10, 20);
-    translate(0, 25);
-    text("The defult settings are: Balls are visible, lines appear when bals are near each other,", 10, 20);
-    translate(0, 25);
-    text("their color is black, there are 100 balls, and the balls have a trail.", 10, 20);
-
+    text("Click start to see the image.", 10, 20);
   pop();
   button.run();
 }
 
 function loadButton(){
   button = new Button(375, 675, 50, 50, "Start?", color(random(0, 255), random(0, 255), random(0, 255)));
-  buttonHide = new Button( 200, 300, 50, 50, "Hide Ball", color(random(0, 255), random(0, 255), random(0, 255)));
-  buttonLine =
-  buttonTrail =
 }
