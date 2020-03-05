@@ -1,12 +1,12 @@
 //balls.js
 class Ball{
-  constructor(x, y, w, h,){
+  constructor(x, y, w, h){
     this.loc = createVector(x, y);
     this.vel = createVector(0, 0);
     this.acc = createVector(random(-1, 1), random(-1,1));
     this.w = w;
     this.h = h;
-    this.clr = color(random(0, 255), random(0, 255), random(0, 255));
+    this.clr = color(0, 0, 0);
   }
 
   run(){
@@ -56,9 +56,8 @@ class Ball{
   }
 
   render(){
-    fill(this.clr);
-    this.clr =  color(random(0, 255), random(0, 255), random(0, 255));
-    //ellipse(this.loc.x, this.loc.y, this.w, this.h);
+    this.clr = color( r, g, b);
+    //this.clr =  color(random(0, 255), random(0, 255), random(0, 255));
     stroke(this.clr);
     var distToBall = 0;
     for(var j = 0; j < ball.length - 1; j++){
