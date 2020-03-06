@@ -10,6 +10,8 @@ var state = 0;
 var button, buttonRainbow;
 var sliderRed, sliderGreen, sliderBlue, sliderText;
 var r, g, b;
+var rainbow;
+var check = 0;
 
 function setup() {
   var cnv = createCanvas(800, 800);
@@ -19,13 +21,13 @@ function setup() {
   loadBalls(num);
   loadButton();
   sliderText = createP("Move the slider to change the color of the image. The first slider is red, the second is green, and the third is blue.");
-  sliderText.position(width/2 + 200, height/2);
+  sliderText.position(width/2 + 100, height/2);
   sliderRed = createSlider(0, 255, 0);
-  sliderRed.position(width/2 + 500, height/2 - 150);
+  sliderRed.position(width - 50, height/2 - 150);
   sliderGreen = createSlider(0, 255, 0);
-  sliderGreen.position(width/2 + 500, height/2 - 100);
+  sliderGreen.position(width - 50, height/2 - 100);
   sliderBlue = createSlider(0, 255, 0);
-  sliderBlue.position(width/2 + 500, height/2 - 50);
+  sliderBlue.position(width - 50, height/2 - 50);
 }
 
 //  The draw function is called @ 30 fps
@@ -35,6 +37,10 @@ function draw() {
   }
 
   if(state === 1){
+    if(check === 0){
+      background(5, 5, 5);
+      check = 1;
+    }
     sliderText.position(10000, 10000);
     sliderRed.position(10000, 10000);
     sliderBlue.position(10000, 10000);
@@ -71,8 +77,8 @@ function startImage(){
   b = sliderBlue.value();
   fill(color(r, g, b));
   ellipse(width/2 - 10, height/2 + 100, 100, 100);
-  button.run();
   buttonRainbow.run();
+  button.run();
 }
 
 function loadButton(){

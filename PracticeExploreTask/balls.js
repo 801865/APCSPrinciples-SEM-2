@@ -57,7 +57,9 @@ class Ball{
 
   render(){
     this.clr = color( r, g, b);
-    //this.clr =  color(random(0, 255), random(0, 255), random(0, 255));
+    if(rainbow === true){
+      this.clr = color(random(0, 255), random(0, 255), random(0, 255));
+    }
     stroke(this.clr);
     var distToBall = 0;
     for(var j = 0; j < ball.length - 1; j++){
