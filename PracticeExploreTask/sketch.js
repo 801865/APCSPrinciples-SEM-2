@@ -21,13 +21,13 @@ function setup() {
   loadBalls(num);
   loadButton();
   sliderText = createP("Move the slider to change the color of the image. The first slider is red, the second is green, and the third is blue.");
-  sliderText.position(width/2 + 100, height/2);
+  sliderText.position(width/2 + 200, height/2);
   sliderRed = createSlider(0, 255, 0);
-  sliderRed.position(width - 50, height/2 - 150);
+  sliderRed.position(width + 75, height/2 - 150);
   sliderGreen = createSlider(0, 255, 0);
-  sliderGreen.position(width - 50, height/2 - 100);
+  sliderGreen.position(width + 75, height/2 - 100);
   sliderBlue = createSlider(0, 255, 0);
-  sliderBlue.position(width - 50, height/2 - 50);
+  sliderBlue.position(width + 75, height/2 - 50);
 }
 
 //  The draw function is called @ 30 fps
