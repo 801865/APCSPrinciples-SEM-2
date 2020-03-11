@@ -38,13 +38,21 @@ class Ball{
 
   update(){//++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     var distToMainBall;
-    if(this.id >= 0){//  if not mainBall
+    if(this.id >= 0 && this.id%2 === 2){//  if not mainBall
       for(var i = 0; i < balls.length; i++){
-        if(balls[i].loc.x > paddle.loc.x && balls[i].loc.x < paddle.loc.x + paddle.w && balls[i].loc.y > paddle.loc.y && balls[i].loc.y < paddle.loc.y);
+        if(balls[i].loc.x > paddle.loc.x && balls[i].loc.x < (paddle.loc.x + paddle.w) && balls[i].loc.y > paddle.loc.y && balls[i].loc.y < (paddle.loc.y + paddle.h));
+        balls.splice(i, 1);
+      }
+    }else if(this.id === -1){
+      if(mainBall.loc.x > paddle.loc.x && mainBall.loc.x < (paddle.loc.x + paddle.w) && mainBall.loc.y > paddle.loc.y && mainBall.loc.y < (paddle.loc.y + paddle.h)){
+          cfhgvjjhjhgjvg
+      }
+    }else if(this.id >= 0 && this.id%2 === '1'){//  if not mainBall
+      for(var i = 0; i < balls.length; i++){
+        if(balls[i].loc.x > paddle.loc.x && balls[i].loc.x < (paddle.loc.x + paddle.w) && balls[i].loc.y > paddle.loc.y && balls[i].loc.y < (paddle.loc.y + paddle.h));
         balls.splice(i, 1);
       }
     }
-
     this.vel.add(this.acc);
     this.vel.limit(5);
     this.loc.add(this.vel);
