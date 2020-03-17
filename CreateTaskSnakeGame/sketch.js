@@ -4,6 +4,9 @@
 //  The setup function function is called once when your program begins
 var snake;
 var food;
+var obstacle = [];
+var num = 1;
+var check = 10;
 var score = 0;
 var gameState = 1;
 var button;
@@ -20,8 +23,9 @@ function setup() {
   fill(200, 30, 150);
   frameRate(6);
   loadSnake();
-  loadFood();// loads the objects of the game(snake, food, button)
+  loadFood();// loads the objects of the game(snake, food, button, obstacle)
   loadButton();
+  loadObstacle(num);
 }
 
 //  The draw function is called @ 30 fps
@@ -66,6 +70,7 @@ function playGame(){
   pop();
   snake.run();
   food.run();
+  runObstacle();
 }// play screen of game
 
 function endGame(){
@@ -121,6 +126,14 @@ function loadFood(){
   food = new Food(foodCol, foodRow, 30, 30);
 }//makes the food
 
+function loadObstacle(n){
+  for(var i = 0; i < n; i++){
+    var obCol = numCol*ceil(random(0, numCol));
+    var obRow = numRow*ceil(random(0, numCol));
+    obstacle[i] = new Obstacle(obCol, obRow, 30, 30);
+  }
+}
+
 function loadButton(){
   button = new Button(400, 600, 100, 50, 'Start Game?', color(random(255), random(255), random(255)));
 }//makes a button
@@ -139,3 +152,16 @@ function keyPressed(){
     snake.vel = createVector(0, numCol);
   }
 }//movement for snake
+
+function runObstacle(){
+  if(score > 10){
+    for(var i = 0; i < num -1; i++){
+      obstacle[i].run();
+    }
+  }
+  if(score%10 === 0 && check === score){
+    num = num + 1;
+    loadObstacle(num);
+    check = check + 10;
+  }
+}
