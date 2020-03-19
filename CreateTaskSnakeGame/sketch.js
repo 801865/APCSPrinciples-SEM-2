@@ -13,6 +13,8 @@ var button;
 var snakeWidth = 30;
 var numCol = 0;
 var numRow = 0;
+var easy, medium, hard;
+var state = 0;
 
 function setup() {
   var cnv = createCanvas(900, 900);
@@ -55,10 +57,19 @@ function startGame(){
     translate(0, 25);
     text('Use the arrow keys to contol the snake(green) in order to get an apple(red).', 10, 20);
     translate(0, 25);
-    text("If you crash into the wall or the tail of the snake, it's game over!", 10, 20);
+    text("If you crash into the wall or the tail of the snake (or if you hit an obstacle", 10, 20);
+    translate(0, 25);
+    text("(grey) when you choose easy, medium, or hard), it's game over!", 10, 20);
+    translate(0, 25);
+    text("Press easy for 1 obstacle every 10 points, medium for 4 obstacles every 10 points, and hard", 10, 20);
+    translate(0 , 25);
+    text("which means 8 obstacles for every 10 points gotten. Or, choose start game for no obstacles", 10, 20);
     //rules of game above
   pop();
   button.run();
+  easy.run();
+  medium.run();
+  hard.run();
 }// start screen of game
 
 function playGame(){
@@ -135,7 +146,10 @@ function loadObstacle(n){
 }
 
 function loadButton(){
-  button = new Button(400, 600, 100, 50, 'Start Game?', color(random(255), random(255), random(255)));
+  button = new Button(400, 800, 100, 50, 'Start Game?', color(random(255), random(255), random(255)));
+  easy = new Button(200, 550, 100, 50, 'Easy', color(random(255), random(255), random(255)));
+  medium = new Button(400, 550, 100, 50, 'Medium', color(random(255), random(255), random(255)));
+  hard = new Button(600, 550, 100, 50, 'Hard', color(random(255), random(255), random(255)));
 }//makes a button
 
 function keyPressed(){
@@ -154,14 +168,40 @@ function keyPressed(){
 }//movement for snake
 
 function runObstacle(){
-  if(score > 10){
-    for(var i = 0; i < num -1; i++){
-      obstacle[i].run();
+  if(state === 1){
+    if(score > 10){
+      for(var i = 0; i < num -1; i++){
+        obstacle[i].run();
+      }
     }
-  }
-  if(score%10 === 0 && check === score){
-    num = num + 1;
-    loadObstacle(num);
-    check = check + 10;
-  }
+    if(score%10 === 0 && check === score){
+      num = num + 1;
+      loadObstacle(num);
+      check = check + 10;
+    }
+  }// easy mode
+  if(state === 2){
+    if(score > 10){
+      for(var i = 0; i < num; i++){
+        obstacle[i].run();
+      }
+    }
+    if(score%10 === 0 && check === score){
+      num = num + 3;
+      loadObstacle(num);
+      check = check + 10;
+    }
+  }// medium mode
+  if(state === 3){
+    if(score > 10){
+      for(var i = 0; i < num; i++){
+        obstacle[i].run();
+      }
+    }
+    if(score%10 === 0 && check === score){
+      num = num + 7;
+      loadObstacle(num);
+      check = check + 10;
+    }
+  }// hard mode
 }

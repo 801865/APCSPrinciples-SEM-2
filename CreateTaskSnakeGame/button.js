@@ -27,7 +27,21 @@ class Button{
       mouseX < (this.x + this.w) &&
       mouseY > this.y &&
       mouseY < (this.y + this.h)){
-      gameState = 2;
+      if(this.message === 'Easy'){
+        state = 1;
+        gameState = 2;
+      }
+      if(this.message === 'Medium'){
+        state = 2;
+        gameState = 2;
+      }
+      if(this.message === 'Hard'){
+        state = 3;
+        gameState = 2;
+      }
+      if(this.message === 'Start Game?'){
+        gameState = 2;
+      }
     }//changes the game screen
   }//end of update
 }//end of button class
