@@ -15,7 +15,6 @@ var numCol = 0;
 var numRow = 0;
 var easy, medium, hard;
 var state = 0;
-
 function setup() {
   var cnv = createCanvas(900, 900);
   cnv.position((windowWidth-width)/2, 30);
@@ -39,6 +38,8 @@ function draw(){
     playGame();
   }else if(gameState === 3){
     endGame();
+  }else if(gameState === 0){
+    Settings();
   }//checks which game screen the program should be run
 }//end of draw
 
@@ -59,7 +60,7 @@ function startGame(){
     translate(0, 25);
     text("If you crash into the wall or the tail of the snake (or if you hit an obstacle", 10, 20);
     translate(0, 25);
-    text("(grey) when you choose easy, medium, or hard), it's game over!", 10, 20);
+    text("(blue) when you choose easy, medium, or hard), it's game over!", 10, 20);
     translate(0, 25);
     text("Press easy for 1 obstacle every 10 points, medium for 4 obstacles every 10 points, and hard", 10, 20);
     translate(0 , 25);
@@ -204,4 +205,4 @@ function runObstacle(){
       check = check + 10;
     }
   }// hard mode
-}
+}// end of run obstacle
