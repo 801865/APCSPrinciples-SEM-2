@@ -27,12 +27,12 @@ class Obstacle{
      }//checks for each segment
    }//starts checking after one segment is added
     rect(this.x, this.y, this.w, this.h);
-  }
+  }// end of render
 
   update(){
     if(this.x === snake.head.x && this.y === snake.head.y){
         gameState = 3;
     }// game ends when snake touches obstacle
-  }
+  }// end of update
 
 }//end of obstacle class

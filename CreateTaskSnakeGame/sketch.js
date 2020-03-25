@@ -1,5 +1,5 @@
 //Danny Ramirez
-//10/31/19
+//3/25/20
 //  This is a comment
 //  The setup function function is called once when your program begins
 var snake;
@@ -144,7 +144,7 @@ function loadObstacle(n){
     var obRow = numRow*ceil(random(0, numCol));
     obstacle[i] = new Obstacle(obCol, obRow, 30, 30);
   }
-}
+}//loads obstacles
 
 function loadButton(){
   button = new Button(400, 800, 100, 50, 'Start Game?', color(random(255), random(255), random(255)));
